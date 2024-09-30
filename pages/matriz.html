@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Matriz de Riesgos</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <!-- agregar el script javascript -->
+    <script defer src="../scripts/matriz.js"></script>
+</head>
+<body>
+
+    <h1>Matriz de Riesgos Laborales</h1>
+
+    <form id="matrizForm" class="matrizForm">
+        <div>
+            <label for="buscarPlanta">Buscar por Planta:</label>
+            <input type="text" id="buscarPlanta" placeholder="Buscar planta...">
+            
+            <label for="buscarSector">Buscar por Sector:</label>
+            <input type="text" id="buscarSector" placeholder="Buscar sector...">
+            
+            <label for="buscarProceso">Buscar por Proceso:</label>
+            <input type="text" id="buscarProceso" placeholder="Buscar proceso...">
+        </div>
+        
+        <button type="button" id="abrirModal">Agregar (+)</button>
+    </form>
+
+    <!-- Modal para agregar datos completos -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Agregar Datos a la Matriz de Riesgos</h2>
+
+        <form id="modalForm" class="modal-form-container">
+            
+            <div>
+                <label for="planta">Planta:</label>
+                <select name="planta" id="planta"></select>
+            </div>
+            
+            <div>
+                <label for="sector">Sector:</label>
+                <select name="sector" id="sector"></select>
+            </div>
+
+            <div>
+                <label for="proceso">Proceso:</label>
+                <select name="proceso" id="proceso"></select>
+            </div>
+
+            <div>
+                <label for="tarea">Tarea:</label>
+                <input type="text" id="tarea" name="tarea" placeholder="Escriba la tarea del proceso" required>  
+            </div>
+
+            <div>
+                <label for="tipoRiesgo">Tipo:</label>
+                <select id="tipoRiesgo" name="tipoRiesgo">
+                    <option value="Laboral">Laboral</option>
+                    <option value="Ambiental">Ambiental</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="peligro">Peligro:</label>
+                <input type="text" id="peligro" name="peligro" placeholder="Escriba el peligro relacionado" required>
+            </div>
+
+            <div>
+                <label for="aspectoAmbiental">Aspecto Ambiental:</label>
+                <input type="text" id="aspectoAmbiental" name="aspectoAmbiental" placeholder="Escriba el aspecto ambiental" readonly>
+            </div>
+
+            <div>
+                <label for="riesgoImpacto">Riesgo/Impacto:</label>
+                <select name="riesgoImpacto" id="riesgoImpacto"></select>
+            </div>
+
+            <div>
+                <label for="tipoActividad">Tipo de Actividad:</label>
+                <select id="tipoActividad" name="tipoActividad">
+                    <option value="normal">Normal</option>
+                    <option value="anormal">Anormal</option>
+                    <option value="emergencia">Emergencia</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="probabilidad">Probabilidad:</label>
+                <select id="probabilidad" name="probabilidad" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="gravedad">Gravedad:</label>
+                <select id="gravedad" name="gravedad" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="riesgoPuro">Riesgo Puro:</label>
+                <input type="text" id="riesgoPuro" name="riesgoPuro" placeholder="Riesgo puro" readonly>
+            </div>
+
+            <div>
+                <label for="evaluacionCuantitativa">Requiere Evaluación Cuantitativa:</label>
+                <select id="evaluacionCuantitativa" name="evaluacionCuantitativa">
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="eliminacionSustitucion">Eliminación o Sustitución:</label>
+                <select id="eliminacionSustitucion" name="eliminacionSustitucion" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="controlIngenieria">Control de Ingeniería:</label>
+                <select id="controlIngenieria" name="controlIngenieria" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="controlesAdministrativos">Controles Administrativos:</label>
+                <select id="controlesAdministrativos" name="controlesAdministrativos" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="epp">EPP:</label>
+                <select id="epp" name="epp" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="controlesEspecificados">Especifique los controles:</label>
+                <input type="text" id="controlesEspecificados" name="controlesEspecificados" placeholder="Detalle el control y disminución del riesgo" required>
+            </div>
+
+            <div>
+                <label for="efectividadControles">Efectividad de Controles en %:</label>
+                <input type="text" id="efectividadControles" name="efectividadControles" placeholder="Efectividad de los controles" readonly>
+            </div>
+
+            <div>
+                <label for="columnaIdentificada">Identificación de Columna:</label>
+                <input type="text" id="columnaIdentificada" name="columnaIdentificada" placeholder="Calculo de efectividad" readonly>
+            </div>
+
+            <div>
+                <label for="riesgoResidual">Riesgo Residual:</label>
+                <input type="text" id="riesgoResidual" name="riesgoResidual" placeholder="Resto residual" readonly>
+            </div>
+
+            <div>
+                <label for="significanciaResidual">Significancia Residual:</label>
+                <input type="text" id="significanciaResidual" name="significanciaResidual" placeholder="Alto, Moderado, Bajo" readonly>
+            </div>
+
+            <div>
+                <label for="responsable">Responsable:</label>
+                <input type="text" id="responsable" name="responsable" placeholder="Escriba su apellido y nombre" required>
+            </div>
+
+            <div>
+                <label for="fechaElaboracion">Fecha de Elaboración/Actualización:</label>
+                <input type="date" id="fechaElaboracion" name="fechaElaboracion" required>
+            </div>
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</div>
+
+    <div class="tabla-container">
+        <table id="riesgoTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Planta</th>
+                    <th>Sector</th>
+                    <th>Proceso</th>
+                    <th>Tarea</th>
+                    <th>Tipo</th>
+                    <th>Peligro</th>
+                    <th>Aspecto Ambiental</th>
+                    <th>Riesgo/Impacto</th>
+                    <th>Tipo de Actividad</th>
+                    <th>Probabilidad</th>
+                    <th>Gravedad</th>
+                    <th>Riesgo Puro</th>
+                    <th>Requiere Evaluación Cuantitativa</th>
+                    <th>Eliminación o Sustitución</th>
+                    <th>Control de Ingeniería</th>
+                    <th>Controles Administrativos</th>
+                    <th>EPP</th>
+                    <th>Especifique los controles</th>
+                    <th>Efectividad de Controles en %</th>
+                    <th>Identificación de Columna</th>
+                    <th>Riesgo Residual</th>
+                    <th>Significancia Residual</th>
+                    <th>Responsable</th>
+                    <th>Fecha de Elaboración/Actualización</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas dinámicas desde JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Librerias -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
